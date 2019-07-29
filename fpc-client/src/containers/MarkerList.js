@@ -10,12 +10,23 @@ class MarkerList extends Component {
   }
 
   render(){
+
+    const {stations} = this.props;
+
+    let stationList = stations.map(s => (
+      <PetrolMarker
+        position={[57.15, -2.35]}
+        text={s.Name}
+      />
+    ))
+
     return (
       <div>
-        <PetrolMarker position={[57.15, -2.35]} text="This is test marker 1!" />
+        {stationList}
+        {/* <PetrolMarker position={[57.15, -2.35]} text="This is test marker 1!" />
         <PetrolMarker position={[57.15, -2.30]} text="This is test marker 2!" />
         <PetrolMarker position={[57.15, -2.25]} text="This is test marker 3!" />
-        <PetrolMarker position={[57.15, -2.20]} text="This is test marker 4!" />
+        <PetrolMarker position={[57.15, -2.20]} text="This is test marker 4!" /> */}
 
       </div>
     );
