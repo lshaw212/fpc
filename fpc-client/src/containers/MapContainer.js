@@ -12,7 +12,7 @@ class MapContainer extends Component {
   }
   
   componentDidMount(){
-    // this.props.fetchStations();
+    this.props.fetchStations();
 
     // console.log(state)
   }
