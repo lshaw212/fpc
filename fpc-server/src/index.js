@@ -3,21 +3,20 @@ import cors from 'cors';
 import express from 'express';
 
 const app = express();
+const bodyParser = require("body-parser");
+const stationRoutes = require("./routes/stations");
+const MongoClient = require("mongodb").MongoClient;
+const ObjectId = require("mongodb").ObjectID;
+
+
+const DATABASE_NAME = "FPC"
 
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
-let stations = {
-  1: {
-    id: '1',
-    name: 'BP',
-    position: [57.15, -2.35]
-  },
-  2: {
-    id: '2',
-    name: 'Shell',
-    position: [57.15, -2.20]
-  },
-};
+app.use("/stations", stationRoutes);
+
 
 app.get('/', (req, res) => {
   return res.send('Received a GET HTTP method');
@@ -34,24 +33,6 @@ app.put('/', (req, res) => {
 app.delete('/', (req, res) => {
   return res.send('Received a DELETE HTTP method');
 })
-
-app.get('/stations', (req, res) => {
-  // return res.send('Received a STATION GET HTTP method');
-  return res.send(Object.values(stations));
-})
-
-app.post('/stations', (req, res) => {
-  return res.send('Received a STATION POST HTTP method');
-})
-
-app.put('/stations', (req, res) => {
-  return res.send('Received a STATION PUT HTTP method');
-})
-
-app.delete('/stations', (req, res) => {
-  return res.send('Received a STATION DELETE HTTP method');
-})
-
 
 app.listen(process.env.PORT, () =>
   console.log(`Server listening on port ${process.env.PORT}...`),
