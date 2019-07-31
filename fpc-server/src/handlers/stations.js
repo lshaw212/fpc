@@ -1,4 +1,6 @@
 const db = require("../models");
+// const getStations = require("../api");
+import {runUpdate, getStationInfo} from '../api';
 
 exports.createStation = async function(req,res,next){
   let newStation = new db.Station(req.body);
@@ -19,46 +21,20 @@ exports.getStations = async function(req,res,next){
   });
 };
 
-// exports.getStations = async function(req,res,next){
-//   try {
-//     let stations = await db.Station.find();
-//     console.log(stations);
-//     return res.status(200).json(stations);
-//   } catch(err) {
-//     return next(err);
-//   }
-// }
-
-// exports.getStations = async function(req,res,next){
-//   try {
-//     let stations = {
-//       1: {
-//         id: '1',
-//         name: 'BP',
-//         position: [57.15, -2.65]
-//       },
-//       2: {
-//         id: '2',
-//         name: 'Shell',
-//         position: [57.15, -2.20]
-//       },
-//       3: {
-//         id: '3',
-//         name: 'Esso',
-//         position: [57.10, -2.27]
-//       }
-//     };
-  
-//     return res.send(Object.values(stations));
-//   } catch(err) {
-//     return next(err);
-//   }
-// }
-
 exports.updateStations = async function(req,res,next){
   try {
-    return res.send('Received a STATION PUT HTTP method');
+
+    let updatedInfo = await getStationInfo();
+
+    updatedInfo.forEach(element => {
+      runUpdate(element);
+      console.log("Update complete");
+    });
+    let newStationInfo = await db.Station.find();
+    return res.status(200).json(newStationInfo);
+
   } catch(err) {
+    console.log(err);
     return next(err);
   }
 }
@@ -70,3 +46,22 @@ exports.deleteStations = async function(req,res,next){
     return next(err);
   }
 }
+
+// *************************************
+
+
+
+// async function runUpdate(obj){
+//     try {
+//       let updateStation = db.Station.findOneAndUpdate(
+//         {name: obj.Name},
+//         {
+//           diesel: obj.FuelPriceList[0].LatestRecordedPrice.InGbp
+//         },
+//         { new: true}).then();
+//         await updateStation.save();
+          
+//     } catch(err) {
+
+//     }
+// }

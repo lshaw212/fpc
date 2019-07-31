@@ -12,19 +12,6 @@ let fuelData;
 const store = configureStore();
 
 const App = () => (
-  // fetch(url)
-  //   .then(function(res){
-  //     return res.json();
-  //   })
-  //   .then(function(data){
-  //     let fuelData = data;
-  //     // fuelPrice = fuelData.Response.DataItems.FuelStationDetails.FuelStationList[0].FuelPriceList[0].LatestRecordedPrice.InGbp;
-  //     console.log(fuelData.Response.DataItems.FuelStationDetails.FuelStationList[0].FuelPriceList[0].LatestRecordedPrice.InGbp);
-  //   })
-  //   .catch(function(error){
-  //     console.log(error);
-  //   });
-
 
   <Provider store={store}>
     <h2>Aberdeenshire Fuel Prices</h2>

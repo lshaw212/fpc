@@ -17,7 +17,7 @@ class MarkerList extends Component {
       <PetrolMarker
         position={s.position}
         text={s.name}
-        key={s.id}
+        key={s._id}
       />
     ))
 
