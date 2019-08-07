@@ -2,29 +2,36 @@ const mongoose = require("mongoose");
 
 const stationSchema = new mongoose.Schema(
   {
-    brand:{
-      type: String
-    },
-    name:{
+    Name:{
       type: String,
       required: true
     },
-    position:{
+    NameId:{
+      type: String
+    },
+    Brand:{
+      type: String
+    },
+    Postcode:{
+      type: String
+    },
+    Position:{
       type: Array,
       required: true
     },
-    diesel:[{
-      type: String
-    }],
-    premiumDiesel:[{
-      type: String
-    }],
-    unleaded:[{
-      type: String
-    }],
-    superUnleaded:[{
-      type: String
-    }]
+
+    FuelPriceList:{
+      type: [{
+        FuelType:{
+          type: String
+        },
+        LatestPrice:{
+          type: String
+        },
+        PreviousPrices:{
+          type: Array
+        }
+    }]},
   },
   {
     timestamps: true

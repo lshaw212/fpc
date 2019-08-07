@@ -15,8 +15,8 @@ class MarkerList extends Component {
 
     let stationList = stations.map(s => (
       <PetrolMarker
-        position={s.position}
-        text={s.name}
+        position={s.Position}
+        text={s.Name}
         key={s._id}
       />
     ))
