@@ -1,36 +1,38 @@
 import React, { Component } from "react";
-import TestMap from './TestMap';
 import { connect } from 'react-redux';
-import { fetchStations } from '../store/actions/stations';
+import MapTabs from './MapTabs';
+import MapView from './MapView';
+import Graph from './Graph';
+import { fetchTab, updateTab } from '../store/actions/tab';
+
+
 
 class MapContainer extends Component {
 
   constructor(props){
     super(props);
-    this.state={
-    }
+    this.handleMap = this.handleMap.bind(this);
+    this.handleStats = this.handleStats.bind(this);
+    this.handleGraph = this.handleGraph.bind(this);
   }
-  
-  componentDidMount(){
-    this.props.fetchStations();
-
-    // console.log(state)
+  handleMap(){
+    this.props.updateTab("map");
   }
-
+  handleStats(){
+    this.props.updateTab("stats");
+  }  
+  handleGraph(){
+    this.props.updateTab("graph");
+  }
   render(){
-    const { stations } = this.props;
-    // console.log(stations);
+    const { tab, stations } = this.props;
+
     return(
-      (typeof stations!=='undefined')?
       <div id="map-container">
-        <div id="map-information">
-          Map Information!
-        </div>
-        <TestMap stations={stations}/>
-      </div>
-      :
-      <div>
-        LOADING
+        <MapTabs map={this.handleMap} stats={this.handleStats} graph={this.handleGraph} />
+        { tab=="map" && <MapView stations={stations}/> }
+        { tab=="stats" && <div>Stats</div> }
+        { tab=="graph" && <Graph stations={stations}/> }
       </div>
     )
   }
@@ -38,10 +40,8 @@ class MapContainer extends Component {
 
 function mapStateToProps(state){
   return {
-    stations: state.stations || []
+    tab: state.tab.tab
   };
 }
 
-// export default withRouter(connect(mapStateToProps, { fetchBlogs, deleteBlog, fetchPosts, favoriteBlog })(BlogList));
-// export default MapContainer;
-export default connect(mapStateToProps, {fetchStations})(MapContainer);
+export default connect(mapStateToProps, {fetchTab, updateTab})(MapContainer);

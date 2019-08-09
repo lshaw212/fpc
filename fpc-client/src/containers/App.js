@@ -1,5 +1,5 @@
 import React from 'react';
-import MapContainer from './MapContainer';
+import Main from './Main';
 import dotenv from 'dotenv';
 import { Provider } from 'react-redux';
 import { configureStore } from '../store';
@@ -15,9 +15,7 @@ const App = () => (
 
   <Provider store={store}>
     <h2>Aberdeenshire Fuel Prices</h2>
-    <div>
-      <MapContainer/>
-    </div>
+    <Main/>
   </Provider>
 );
 

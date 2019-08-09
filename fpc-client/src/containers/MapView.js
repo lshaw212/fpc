@@ -3,7 +3,7 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import MarkerList from './MarkerList';
 
-class TestMap extends Component {
+class MapView extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -42,4 +42,4 @@ class TestMap extends Component {
   }
 }
 
-export default TestMap;
+export default MapView;
