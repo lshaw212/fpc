@@ -15,6 +15,7 @@ class Main extends Component {
     }
     this.petrol = this.petrol.bind(this);
     this.unleaded = this.unleaded.bind(this);
+    this.tester = this.tester.bind(this);
   }
 
   componentDidMount(){
@@ -27,21 +28,38 @@ class Main extends Component {
   }
 
   petrol(){
-    this.props.updateFuelType("Petrol");
+    this.props.updateFuelType("Diesel");
   }
   unleaded(){
     this.props.updateFuelType("Unleaded");
   }
+  tester(){
+    this.props.updateFuelType("Super Unleaded");
+  }
 
   render(){
-    const {stations, fuelType, tab} = this.props
+    const {stations, fuelType, tab, selected_station} = this.props
+    
+    let checkStations = stations.map((item) => {
+      
+      return {...item, FuelPriceList: item.FuelPriceList.filter((subItem) => subItem.FuelType === fuelType)}
+    });
+    // ******
+    // Find a better way of perfroming this check
+    // ******
+    let filteredStations = checkStations.filter((item) => {
+      if(item.FuelPriceList.length != 0)
+        return {...item}
+    })
+
+    console.log(filteredStations);
     if(this.state.isLoading){
       return (<div>Loading....</div>)
     }
     return(
       <div id="main-container">
-        <SideBar petrol={this.petrol} unleaded={this.unleaded} ft={fuelType}/>
-        <MapContainer tab={tab} stations={stations}/>
+        <SideBar ss={selected_station} petrol={this.petrol} unleaded={this.unleaded} tester={this.tester}/>
+        <MapContainer tab={tab} stations={filteredStations}/>
       </div>
     )
   }
@@ -49,7 +67,8 @@ class Main extends Component {
 
 function mapStateToProps(state){
   return {
-    stations: state.stations || [],
+    stations: state.stations.station_list || [],
+    selected_station: state.stations.selected_station,
     fuelType: state.fuel.fuelType,
     tab: state.tab.tab
   };

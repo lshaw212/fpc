@@ -1,6 +1,6 @@
 import { LOAD_FUEL_TYPE, SET_FUEL_TYPE } from "../actionTypes";
 
-const initialState = {fuelType: 'Petrol'}
+const initialState = {fuelType: 'Diesel'}
 
 const fuel = (state=initialState, action) => {
   switch(action.type){

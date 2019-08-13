@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PetrolMarker from '../components/PetrolMarker';
+import { connect } from 'react-redux';
+import { getStation } from '../store/actions/stations';
 
 class MarkerList extends Component {
   constructor(props){
@@ -7,6 +9,11 @@ class MarkerList extends Component {
     this.state = {
 
     }
+  }
+
+  selectStation(name){
+    let selectedStation = this.props.stations.filter(s => s.NameId === name);
+    this.props.getStation(selectedStation);
   }
 
   render(){
@@ -17,6 +24,9 @@ class MarkerList extends Component {
       <PetrolMarker
         position={s.Position}
         text={s.Name}
+        price={s.FuelPriceList[0].LatestPrice}
+        selectStation={this.selectStation.bind(this, s.NameId)}
+        location={s.Postcode}
         key={s._id}
       />
     ))
@@ -24,15 +34,14 @@ class MarkerList extends Component {
     return (
       <div>
         {stationList}
-        {/* <PetrolMarker position={[57.15, -2.35]} text="This is test marker 1!" />
-        <PetrolMarker position={[57.15, -2.30]} text="This is test marker 2!" />
-        <PetrolMarker position={[57.15, -2.25]} text="This is test marker 3!" />
-        <PetrolMarker position={[57.15, -2.20]} text="This is test marker 4!" /> */}
-
       </div>
     );
 
   }
 }
-
-export default MarkerList;
+function mapStateToProps(state){
+  return {
+    selected_station: state.stations.selected_station
+  };
+}
+export default connect(mapStateToProps,{getStation})(MarkerList);
