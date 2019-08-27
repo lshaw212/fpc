@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SideBar from './SideBar';
 import MapContainer from './MapContainer';
+import TopBar from '../components/TopBar';
 import { connect } from 'react-redux';
 import { fetchStations } from '../store/actions/stations';
 import { fetchFuelType, updateFuelType } from '../store/actions/fuel';
@@ -51,15 +52,16 @@ class Main extends Component {
       if(item.FuelPriceList.length != 0)
         return {...item}
     })
-
-    console.log(filteredStations);
     if(this.state.isLoading){
       return (<div>Loading....</div>)
     }
     return(
-      <div id="main-container">
-        <SideBar selected_station={selected_station} petrol={this.petrol} unleaded={this.unleaded} tester={this.tester}/>
-        <MapContainer tab={tab} stations={filteredStations} selected_station={selected_station}/>
+      <div>
+        <TopBar fuelType={fuelType}/>
+        <div id="main-container">
+          <SideBar selected_station={selected_station} petrol={this.petrol} unleaded={this.unleaded} tester={this.tester}/>
+          <MapContainer tab={tab} stations={filteredStations} selected_station={selected_station}/>
+        </div>
       </div>
     )
   }

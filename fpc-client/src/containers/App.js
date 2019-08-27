@@ -14,7 +14,6 @@ const store = configureStore();
 const App = () => (
 
   <Provider store={store}>
-    <h2>Aberdeenshire Fuel Prices</h2>
     <Main/>
   </Provider>
 );

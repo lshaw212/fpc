@@ -18,7 +18,7 @@ class MarkerList extends Component {
 
   render(){
 
-    const {stations} = this.props;
+    const {stations, openGraph} = this.props;
 
     let stationList = stations.map(s => (
       <PetrolMarker
@@ -27,6 +27,7 @@ class MarkerList extends Component {
         price={s.FuelPriceList[0].LatestPrice}
         selectStation={this.selectStation.bind(this, s.NameId)}
         location={s.Postcode}
+        openGraph={openGraph}
         key={s._id}
       />
     ))

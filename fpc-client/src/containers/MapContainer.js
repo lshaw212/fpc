@@ -30,8 +30,8 @@ class MapContainer extends Component {
     return(
       <div id="map-container">
         <MapTabs map={this.handleMap} stats={this.handleStats} graph={this.handleGraph} />
-        { tab=="map" && <MapView stations={stations}/> }
-        { tab=="stats" && <div>Stats</div> }
+        { tab=="map" && <MapView stations={stations} openGraph={this.handleGraph}/> }
+        { tab=="stats" && <div id="stats-container">Stats</div> }
         { tab=="graph" && <Graph stations={stations} selected_station={selected_station}/> }
       </div>
     )

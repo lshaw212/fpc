@@ -1,0 +1,41 @@
+#graph-container{
+  width: 100%;
+  /* height: 100%; */
+  height: 700px;
+  border: 2px solid black;
+}
+
+.line {
+  fill: none;
+  stroke: #6473c7;
+  stroke-width: 2;
+}
+
+.overlay {
+fill: none;
+pointer-events: all;
+}
+
+/* Style the dots by assigning a fill and stroke */
+.dot {
+  fill: #6473c7;;
+  stroke: #fff;
+}
+
+.focus circle {
+fill: none;
+stroke: steelblue;
+}
+
+div.tooltip {	
+  position: absolute;			
+  text-align: center;			
+  width: 60px;					
+  height: 28px;					
+  padding: 2px;				
+  font: 12px sans-serif;		
+  background: lightsteelblue;	
+  border: 0px;		
+  border-radius: 8px;			
+  pointer-events: none;			
+}

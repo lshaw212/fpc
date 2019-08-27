@@ -12,7 +12,7 @@ class MapView extends Component {
       zoom: 10
     }
   }
-
+  
   componentDidMount(){
     let bounds =  this.refs.map.leafletElement.getBounds();
     // console.log(bounds);
@@ -27,7 +27,7 @@ class MapView extends Component {
     const corner1 = L.latLng(57.741, -1.255);
     const corner2 = L.latLng(56.549, -3.343);
     const bounds = L.latLngBounds(corner1,corner2);
-    const {stations} = this.props;
+    const {stations, openGraph} = this.props;
 
     return (
       <Map center={position} maxBounds={bounds} zoom={this.state.zoom} zoomSnap={0.25} minZoom={9} maxZoom={16} ref='map'>
@@ -35,7 +35,7 @@ class MapView extends Component {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
-        <MarkerList stations={stations}/>
+        <MarkerList stations={stations} openGraph={openGraph}/>
       </Map>
     );
 
