@@ -58,8 +58,8 @@ class Main extends Component {
     }
     return(
       <div id="main-container">
-        <SideBar ss={selected_station} petrol={this.petrol} unleaded={this.unleaded} tester={this.tester}/>
-        <MapContainer tab={tab} stations={filteredStations}/>
+        <SideBar selected_station={selected_station} petrol={this.petrol} unleaded={this.unleaded} tester={this.tester}/>
+        <MapContainer tab={tab} stations={filteredStations} selected_station={selected_station}/>
       </div>
     )
   }

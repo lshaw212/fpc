@@ -12,7 +12,7 @@ class MarkerList extends Component {
   }
 
   selectStation(name){
-    let selectedStation = this.props.stations.filter(s => s.NameId === name);
+    let selectedStation = this.props.stations.find(s => s.NameId === name);
     this.props.getStation(selectedStation);
   }
 

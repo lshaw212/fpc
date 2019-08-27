@@ -25,14 +25,14 @@ class MapContainer extends Component {
     this.props.updateTab("graph");
   }
   render(){
-    const { tab, stations } = this.props;
+    const { tab, stations, selected_station } = this.props;
 
     return(
       <div id="map-container">
         <MapTabs map={this.handleMap} stats={this.handleStats} graph={this.handleGraph} />
         { tab=="map" && <MapView stations={stations}/> }
         { tab=="stats" && <div>Stats</div> }
-        { tab=="graph" && <Graph stations={stations}/> }
+        { tab=="graph" && <Graph stations={stations} selected_station={selected_station}/> }
       </div>
     )
   }
