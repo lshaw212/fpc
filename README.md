@@ -1,2 +1,1 @@
-# fpc
-Fuel Price Checker
+# Fuel Price Checker
